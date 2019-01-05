@@ -1,0 +1,78 @@
+{% from 'bootstrap/nav.html' import render_nav_item %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" cotent="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}{% endblock title %} - 1
+            <!--admin.blog_title|default('Blog Title')-->
+        </title>
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/%s.min.css' % request.cookies.get('theme', 'Journal')) }}"
+              type="text/css">
+    {% endblock head %}
+</head>
+<body>
+{% block nav %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+{% endblock nav %}
+
+<div class="container">
+    <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/>
+     <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/>
+     <br/>    <br/>    <br/>    <br/>
+        <br/>
+        <br/>    <br/>
+
+
+
+    <hr>
+    <hr><hr>
+    <hr><hr>
+    <hr><hr>
+    <hr><hr>
+    <hr>
+
+
+
+
+    4
+    5
+    65
+    6
+
+    7
+    7
+    2312
+</div>
+</body>
+</html>
