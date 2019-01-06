@@ -18,6 +18,7 @@ def create_app(config_name=None):
     """Factory Function"""
     if config_name is None:
         config_name = os.getenv('FLASK_CONFIG', 'development')
+
     app = Flask('myblog')
     # app.config.from_object(config[config_name])
 

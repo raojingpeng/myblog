@@ -13,11 +13,16 @@
         <link rel="stylesheet"
               href="{{ url_for('static', filename='css/%s.min.css' % request.cookies.get('theme', 'Journal')) }}"
               type="text/css">
+        <!--<link rel="stylesheet"-->
+              <!--href="{{ url_for('static', filename='css/style.css') }}"-->
+              <!--type="text/css">-->
     {% endblock head %}
 </head>
 <body>
+
 {% block nav %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -43,11 +48,16 @@
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
+    </div>
 </nav>
 {% endblock nav %}
 
-<div class="container">
+<main class="container">
     <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/>
+     <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/>
+     <br/>    <br/>    <br/>    <br/>
+        <br/>
+        <br/>    <br/>    <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/>
      <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/> <br/>    <br/>    <br/>    <br/>
      <br/>    <br/>    <br/>    <br/>
         <br/>
@@ -73,6 +83,11 @@
     7
     7
     2312
-</div>
+</main>
+{% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.slim.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+{% endblock %}
 </body>
 </html>
