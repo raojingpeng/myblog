@@ -4,6 +4,6 @@
     :github: https://github.com/raojingpeng
     :email: withrjp@gmail.com
 """
-config = {
-    'development': '1'
-}
+import os
+import sys
+
