@@ -7,3 +7,17 @@
 import os
 import sys
 
+basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+
+class BaseConfig(object):
+    SECRET_KEY = os.getenv('SECRET_KEY', 'raojingpeng')
+
+
+class DevelopmentConfig(BaseConfig):
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://dev:19941117@localhost/myblog'
+
+
+config = {
+    'development': DevelopmentConfig
+}

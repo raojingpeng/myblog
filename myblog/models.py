@@ -13,3 +13,6 @@ class Post(db.Model):
     title = db.Column(db.String(60))
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow(), index=True)
+
+    def __repr__(self):
+        return '<Post id:%r%r%r%r>' % (self.id, self.title, self.body[1:10], self.timestamp)
