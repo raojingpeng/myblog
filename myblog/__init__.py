@@ -13,7 +13,7 @@ from myblog.blueprints.auth import auth_bp
 from myblog.blueprints.blog import blog_bp
 from myblog.extensions import login_manager, db, csrf, mail, bootstrap, moment
 from myblog.models import Admin, Category, Post
-from myblog.fake import fake_admin, fake_categories, fake_posts
+from myblog.fake import fake_admin, fake_categories, fake_posts, fake_comments, fake_links
 from myblog.settings import config
 
 
@@ -58,8 +58,8 @@ def register_commands(app):
     @app.cli.command()
     @click.option('--category', default=10, help='Quantity of categories, default is 10.')
     @click.option('--post', default=50, help='Quantity of posts, default is 50.')
-    #@click.option('--comment', default=500, help='Quantity of comments, default is 500.')
-    def forge(category, post):
+    @click.option('--comment', default=500, help='Quantity of comments, default is 500.')
+    def forge(category, post, comment):
         """"Generate fake data."""
         db.drop_all()
         db.create_all()
@@ -72,5 +72,14 @@ def register_commands(app):
 
         click.echo('Generating %d posts...' % post)
         fake_posts(post)
+
+        click.echo('Generating %d comments...' % comment)
+        fake_comments(comment)
+
+        click.echo('Generating links...')
+        fake_links()
+
+        click.echo('Done.')
+
 
 
