@@ -12,7 +12,7 @@ from myblog.blueprints.admin import admin_bp
 from myblog.blueprints.auth import auth_bp
 from myblog.blueprints.blog import blog_bp
 from myblog.extensions import login_manager, db, csrf, mail, bootstrap, moment
-from myblog.models import Admin, Category, Post
+from myblog.models import Admin, Category, Post, Comment, Link
 from myblog.fake import fake_admin, fake_categories, fake_posts, fake_comments, fake_links
 from myblog.settings import config
 
@@ -47,11 +47,13 @@ def register_blueprints(app):
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(blog_bp)
 
+def register_template_context(app):
+    @app.context_processor
 
 def register_shell_context(app):
     @app.shell_context_processor
     def make_shell_context():
-        return dict(db=db, Admin=Admin, Category=Category, Post=Post)
+        return dict(db=db, Admin=Admin, Category=Category, Post=Post, Comment=Comment, Link=Link)
 
 
 def register_commands(app):
