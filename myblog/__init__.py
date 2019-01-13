@@ -28,6 +28,7 @@ def create_app(config_name=None):
     register_extensions(app)
     register_blueprints(app)
     register_commands(app)
+    register_template_context(app)
     register_shell_context(app)
 
     return app
@@ -47,8 +48,16 @@ def register_blueprints(app):
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(blog_bp)
 
+
 def register_template_context(app):
     @app.context_processor
+    def make_template_context():
+        admin = Admin.query.first()
+        categories = Category.query.order_by(Category.name).all()
+        links = Link.query.order_by(Link.name).all()
+
+        return dict(admin=admin, categories=categories, links=links)
+
 
 def register_shell_context(app):
     @app.shell_context_processor
