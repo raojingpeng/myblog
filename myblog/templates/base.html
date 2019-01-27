@@ -1,80 +1,97 @@
-{% from 'bootstrap/nav.html' import render_nav_item %}
+{% from "macros.html" import nav_link %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    {% block head %}
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" cotent="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block title %}{% endblock title %} - 1
-            <!--admin.blog_title|default('Blog Title')-->
-        </title>
-        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-        <link rel="stylesheet"
-              href="{{ url_for('static', filename='css/%s.min.css' % request.cookies.get('theme', 'Journal')) }}"
-              type="text/css">
-        <link rel="stylesheet"
-              href="{{ url_for('static', filename='css/style.css') }}"
-              type="text/css">
-    {% endblock head %}
+  {% block head %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="blog,python,flask">
+  <meta name="description" content="Neko's blog">
+  <title>{% block title %}{% endblock title %} - {{ admin.blog_title|default('Blog Title')}}</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.icon') }}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  {% endblock head %}
 </head>
+
 <body>
+  {% block nav %}
+  <header>
+    <nav class="top-nav hide-on-large-only">
+      <div class="container">
+        <div class="nav-wrapper">
+          <div class="row">
+            <div class="col s12 m10 offset-m1">
+              <h3 class="header">
+                {%- if request.path=='/' %}Home{% else %}request.path{% endif -%}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-{% block nav %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <ul id="slide-out" class="sidenav sidenav-fixed collapsible">
+      <li class="logo">
+        <img class="responsive-img circle hvr-grow" src="{{ url_for('static', filename='profile_photo.jpg') }}" alt="Profile Photo">
+      </li>
+      <li class="blog_name">
+        <h3>{{ admin.blog_title|default('Blog Title')}}</h3>
+      </li>
+      {{ nav_link('blog.index', 'Home', 'home') }}
+      <li class="category">
+        <a class="waves-effect waves-teal collapsible-header"><i class="material-icons">list</i>Category</a>
+        <div class="collapsible-body">
+          <ul>
+            {% for category in categories %}
+            <li><a href="autocomplete.html">{{ category.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </li>
+      {{ nav_link('blog.index', 'Post', 'description') }}
+      {{ nav_link('blog.index', 'About', 'face') }}
+      {{ nav_link('blog.index', 'Project', 'web') }}
+      {{ nav_link('blog.index', 'Message Board', 'comment') }}
+    </ul>
+
     <div class="container">
-        <a class="navbar-brand" href="{{ url_for('blog.index')}}">{{ admin.blog_title }}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                {{ render_nav_item('blog.index', 'Home') }}
-                {{ render_nav_item('blog.index', 'About') }}
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
+      <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only">
+        <i class="material-icons">menu</i>
+      </a>
     </div>
-</nav>
-{% endblock nav %}
+  </header>
+  {% endblock nav %}
 
-<main class="container">
-    {% for message in get_flashed_message(with_categories=True) %}
-        <div class="alert alert-dismissible alert-{{ message[0] }}">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>{{ message[1] }}</strong>
-        </div>
-    {% endfor %}
-    {% block content %} {% endblock content %}
-    {% block footer %}
-        <footer>
+  <main>
+    <div class="container">
+        {% block content %}{% endblock content %}
+        {% block footer %}
+           <footer class="page-footer">
             <p class="float-left">
-                <small> &copy; 2019 <a href="http://greyli.com" title="Written by Raojingpeng">Raojingpeng</a> -
-                    <a href="https://github.com/raojingpeng" title="Fork me on GitHub">GitHub</a> -
-                    <a href="mailto:withrjp@gmail.com" title="Mail to me">Mail</a>
+                <small> &copy; 2018 <a href="http://greyli.com" title="Written by Grey Li">Grey Li</a> -
+                    <a href="https://github.com/greyli/bluelog" title="Fork me on GitHub">GitHub</a> -
+                    <a href="http://helloflask.com" title="A HelloFlask project">HelloFlask</a>
                 </small>
             </p>
             <p class="float-right">
                 <small>
-                    {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('auth.logout', next=request.full_path) }}">Logout</a>
-                    {% else %}
-                        <a href="{{ url_for('auth.login', next=request.full_path) }}">Login</a>
-                    {% endif %}
+                    <a>Login</a>
                 </small>
             </p>
         </footer>
-    {% endblock footer %}
-</main>
-{% block scripts %}
-    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.slim.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-{% endblock %}
+        {% endblock footer %}
+    </div>
+  </main>
+
+  {% block scripts %}
+  <script src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+  {% endblock scripts %}
 </body>
+
 </html>

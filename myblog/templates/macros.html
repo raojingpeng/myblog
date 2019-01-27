@@ -1,0 +1,8 @@
+{% macro nav_link(endpoint, text, icon) -%}
+ <li {% if request.endpoint and request.endpoint==endpoint %}class="active" {% endif %}>
+     <a class="waves-effect waves-teal" href="{{ url_for(endpoint, **kwargs) }}">
+         <i class="material-icons">{{ icon }}</i>
+         {{- text -}}
+     </a>
+ </li>
+{%- endmacro %}

@@ -4,10 +4,10 @@
     :github: https://github.com/raojingpeng
     :email: withrjp@gmail.com
 """
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, current_app
 
 from myblog.extensions import db
-from myblog.models import Post
+from myblog.models import Category, Post
 
 
 blog_bp = Blueprint('blog', __name__)
@@ -15,9 +15,9 @@ blog_bp = Blueprint('blog', __name__)
 
 @blog_bp.route('/')
 def index():
-    title = 'test'
-    body = 'hahaha'
-    post = Post(title=title, body=body)
-    db.session.add(post)
-    db.session.commit()
-    return render_template('blog/index.html')
+    page = request.args.get('page', 1)
+    per_page = current_app.config['POST_PER_PAGE']
+    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(page, per_page=per_page)
+    posts = pagination.items
+    categories = Category.query.order_by(Category.id).all()
+    return render_template('blog/index.html', pagination=pagination, categories=categories, posts=posts)

@@ -11,7 +11,7 @@ from flask import Flask
 from myblog.blueprints.admin import admin_bp
 from myblog.blueprints.auth import auth_bp
 from myblog.blueprints.blog import blog_bp
-from myblog.extensions import login_manager, db, csrf, mail, bootstrap, moment
+from myblog.extensions import login_manager, db, csrf, mail, moment
 from myblog.models import Admin, Category, Post, Comment, Link
 from myblog.fake import fake_admin, fake_categories, fake_posts, fake_comments, fake_links
 from myblog.settings import config
@@ -39,7 +39,6 @@ def register_extensions(app):
     db.init_app(app)
     csrf.init_app(app)
     mail.init_app(app)
-    bootstrap.init_app(app)
     moment.init_app(app)
 
 

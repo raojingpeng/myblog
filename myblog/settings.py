@@ -15,6 +15,8 @@ class BaseConfig(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    POST_PER_PAGE = 10
+
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://dev:19941117@localhost/myblog'

@@ -1,51 +1,150 @@
-nav {
-    margin-bottom: 20px;
-}
-
-img {
-    max-width: 100%;
-    height: auto !important;
-}
-
-.inline {
-    display: inline;
-}
-
-.page-header {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.comments {
-    margin: 20px 0;
-}
-
-.reply-body {
-    margin-top: 10px;
-}
-
-.sidebar {
-    padding-left: 30px;
-}
-
+header,
+main,
 footer {
-    margin-top: 30px;
-    padding: 10px 0 40px;
-    color: #999;
-    border-top: 1px solid #e5e5e5;
+    padding-left: 300px;
 }
 
-.page-footer {
-    padding-top: 40px;
+.header {
+    color: #ee6e73;
+    font-weight: 300;
 }
 
-.tip { /* from github.com */
-    color: black !important;
-    position: relative;
-    padding: 40px;
+main .container {
+    margin: auto 0;
+    max-width: 1280px;
+    width: 90%;
+}
+
+ul.sidenav.sidenav-fixed {
+    overflow: hidden;
+    box-shadow: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.14);
+    /*background-image: url("../img/light-grey-terrazzo.png");*/
+}
+
+ul.sidenav.sidenav-fixed:hover {
+    overflow-y: auto;
+}
+
+ul.sidenav.sidenav-fixed h3 {
     text-align: center;
-    background-color: #fafbfc;
-    border: 1px solid #e1e4e8;
-    border-radius: 3px;
-    box-shadow: inset 0 0 10px rgba(27, 31, 35, 0.05);
+    padding: 0 0 20px 0;
+    color: #ee6e73;
+    font-weight: 300;
+}
+
+ul.sidenav.sidenav-fixed i {
+    margin: 0 12px 0 0 !important;
+}
+
+.sidenav .collapsible-body li a {
+    padding: 0 23.5px 0 83px;
+}
+
+.sidenav li.active {
+    background-color: unset;
+}
+
+.sidenav li.active a.waves-effect {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sidenav .collapsible-body {
+    border: 0;
+    background-color: inherit;
+}
+
+li.logo {
+    text-align: center;
+    padding-top: 22px;
+}
+
+nav.top-nav {
+    height: 110px;
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+nav.top-nav h1.header {
+    margin: 0;
+    padding-top: 22px;
+}
+
+a.sidenav-trigger {
+    position: absolute;
+    text-align: center;
+    height: 48px;
+    width: 48px;
+    top: 28px;
+    float: none;
+    margin-left: 1.5rem;
+    color: #f3989b;
+    font-size: 36px;
+    z-index: 2;
+}
+
+/* menu icon size */
+a.sidenav-trigger i {
+    font-size: 32px;
+}
+
+li.logo img {
+    margin-top: 10px;
+    width: 136px;
+    height: 136px;
+    border: 4px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+@media only screen and (max-width: 992px) {
+    nav {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 601px) {
+
+    main>.container,
+    body>.page-footer>.container,
+    .top-nav>.container,
+    #index-banner>.container,
+    .github-commit>.container {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width : 992px) {
+
+    header,
+    main,
+    footer {
+        padding-left: 0;
+    }
+}
+
+@media only screen and (max-width : 992px) {
+    main {
+        margin-left: 8.3333333333%;
+    }
+}
+
+/* Grow */
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
