@@ -84,6 +84,10 @@ a.sidenav-trigger {
     z-index: 2;
 }
 
+.float-right {
+    float: right !important;
+}
+
 /* menu icon size */
 a.sidenav-trigger i {
     font-size: 32px;
@@ -97,6 +101,17 @@ li.logo img {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
+div.footer-copyright div.row {
+    margin: auto;
+}
+
+.docs-footer {
+    margin-top: 40px;
+    background-color: transparent;
+    border-top: 1px solid rgba(0,0,0,0.14);
+    color: inherit;
+}
+
 @media only screen and (max-width: 992px) {
     nav {
         text-align: center;
@@ -107,6 +122,7 @@ li.logo img {
 
     main>.container,
     body>.page-footer>.container,
+    footer>.footer-copyright>.container,
     .top-nav>.container,
     #index-banner>.container,
     .github-commit>.container {

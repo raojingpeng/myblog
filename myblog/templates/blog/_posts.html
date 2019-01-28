@@ -1,0 +1,32 @@
+{% if posts %}
+    {% for post in posts %}
+        <span class="section">
+          <h4>
+              <a href="3" class="red-text text-lighten-2">{{ post.title }}</a>
+          </h4>
+          <p>
+              {{ post.body|striptags|truncate }}
+              <small><a href="4">Read More</a></small>
+          </p>
+          <small>
+              Comments: <a href="1#comments">{{ post.comments|length }}</a>&nbsp;&nbsp;
+              Category: <a href="2">{{ post.category.name }}</a>
+              <span class="float-right">
+                <span class="tooltipped" data-position="left"
+                      data-timestamp="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%SZ') }}">
+                    {{ moment(post.timestamp).fromNow(refresh=True) }}
+                </span>
+              </span>
+          </small>
+          {% if not loop.last %}
+            <div class="divider"></div>
+          {% endif %}
+    {% endfor %}
+{% else %}
+    <div class="tip">
+        <h5>No posts yet.</h5>
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('admin.new_post') }}">Write Now</a>
+        {% endif %}
+    </div>
+{% endif %}
