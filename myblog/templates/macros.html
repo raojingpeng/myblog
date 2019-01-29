@@ -1,35 +1,37 @@
 {% macro nav_link(endpoint, text, icon) -%}
- <li {% if request.endpoint and request.endpoint==endpoint %}class="active" {% endif %}>
-     <a class="waves-effect waves-teal" href="{{ url_for(endpoint, **kwargs) }}">
-         <i class="material-icons">{{ icon }}</i>
-         {{- text -}}
-     </a>
- </li>
+<li {% if request.endpoint and request.endpoint==endpoint %}class="active" {% endif %}>
+    <a class="waves-effect waves-teal" href="{{ url_for(endpoint, **kwargs) }}">
+        <i class="material-icons">{{ icon }}</i>{{- text -}}
+    </a>
+</li>
 {%- endmacro %}
 
 {% macro render_pagination(pagination, ellipses='…') %}
-  <ul class="pagination">
-       <li {% if not pagination.has_prev %}
-            class="disabled"><a href="#!">
-        {% else %}
-            class="waves-effect waves-teal"><a href="{{ url_for(request.endpoint, page=pagination.prev_num) }}">
+<ul class="pagination">
+    <li
+    {% if not pagination.has_prev %}
+        class="disabled"><a href="#!">
+    {% else %}
+        class="waves-effect waves-teal"><a href="{{ url_for(request.endpoint, page=pagination.prev_num) }}">
+    {% endif %}
+        <i class="material-icons">chevron_left</i>
+        </a>
+    </li>
+    {% for page in pagination.iter_pages() %}
+        {% if page %}
+            <li
+                {% if page != pagination.page %}
+                    class="waves-effect waves-teal"><a href="{{ url_for(request.endpoint, page=page) }}">
+                {%- else %}
+                    class="active"><a href="#!">
+                {% endif -%}
+                {{ page -}}
+                </a>
+            </li>
+        {% elif ellipses != None %}
+            <li class="disabled"><a href="#!">{{ ellipses }}</a></li>
         {% endif %}
-            <i class="material-icons">chevron_left</i>
-            </a>
-        </li>
-      {% for page in pagination.iter_pages() %}
-          {% if page %}
-              <li {% if page != pagination.page %}
-                      class="waves-effect waves-teal"><a href="{{ url_for(request.endpoint, page=page) }}">
-                  {% else %}
-                      class="active"><a href="#!">
-                  {% endif %}
-                      {{ page }}</a>
-              </li>
-          {% elif ellipses != None %}
-              <li class="disabled"><a href="#!">{{ ellipses }}</a></li>
-          {% endif %}
-      {% endfor %}
+    {% endfor %}
     <li {% if not pagination.has_next %}
         class="disabled"><a href="#!">
     {% else %}
@@ -38,5 +40,5 @@
         <i class="material-icons">chevron_right</i>
         </a>
     </li>
-  </ul>
+</ul>
 {% endmacro %}
