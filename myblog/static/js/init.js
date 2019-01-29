@@ -2,10 +2,9 @@
   $(function(){
     $('.sidenav').sidenav();
     $('.collapsible').collapsible();
-    function render_time() {
-        return moment($(this).data('timestamp')).format('lll')
-    }
-
+    $('.tooltipped').map(function () {
+        $(this).attr('data-tooltip', moment($(this).data('timestamp')).format('YYYY/MM/DD HH:mm:ss'));
+      });
     $('.tooltipped').tooltip();
   });
 })(jQuery);

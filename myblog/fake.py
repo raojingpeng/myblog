@@ -45,7 +45,7 @@ def fake_categories(count=10):
 def fake_posts(count=50):
     for i in range(count):
         post = Post(
-            title=fake.sentence(nb_words=random.randint(3, 6)),
+            title=fake.sentence(nb_words=3),
             body=fake.text(2000),
             category=Category.query.get(random.randint(1, Category.query.count())),
             timestamp=fake.date_time_this_year()

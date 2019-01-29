@@ -6,3 +6,37 @@
      </a>
  </li>
 {%- endmacro %}
+
+{% macro render_pagination(pagination, ellipses='…') %}
+  <ul class="pagination">
+       <li {% if not pagination.has_prev %}
+            class="disabled"><a href="#!">
+        {% else %}
+            class="waves-effect waves-teal"><a href="{{ url_for(request.endpoint, page=pagination.prev_num) }}">
+        {% endif %}
+            <i class="material-icons">chevron_left</i>
+            </a>
+        </li>
+      {% for page in pagination.iter_pages() %}
+          {% if page %}
+              <li {% if page != pagination.page %}
+                      class="waves-effect waves-teal"><a href="{{ url_for(request.endpoint, page=page) }}">
+                  {% else %}
+                      class="active"><a href="#!">
+                  {% endif %}
+                      {{ page }}</a>
+              </li>
+          {% elif ellipses != None %}
+              <li class="disabled"><a href="#!">{{ ellipses }}</a></li>
+          {% endif %}
+      {% endfor %}
+    <li {% if not pagination.has_next %}
+        class="disabled"><a href="#!">
+    {% else %}
+        class="waves-effect waves-teal"><a href="{{ url_for(request.endpoint, page=pagination.next_num) }}">
+    {% endif %}
+        <i class="material-icons">chevron_right</i>
+        </a>
+    </li>
+  </ul>
+{% endmacro %}
