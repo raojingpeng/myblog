@@ -27,7 +27,6 @@ ul.sidenav.sidenav-fixed:hover {
 }
 
 ul.sidenav.sidenav-fixed h3 {
-    text-align: center;
     padding: 0 0 20px 0;
     color: #ee6e73;
     font-weight: 300;
@@ -106,7 +105,6 @@ div.footer-copyright div.row {
 }
 
 .docs-footer {
-    margin-top: 40px;
     background-color: transparent;
     border-top: 1px solid rgba(0,0,0,0.14);
     color: inherit;

@@ -24,15 +24,16 @@
                     class="waves-effect waves-teal"><a href="{{ url_for(request.endpoint, page=page) }}">
                 {%- else %}
                     class="active"><a href="#!">
-                {% endif -%}
-                {{ page -}}
+                {% endif %}
+                {{- page -}}
                 </a>
             </li>
         {% elif ellipses != None %}
             <li class="disabled"><a href="#!">{{ ellipses }}</a></li>
         {% endif %}
     {% endfor %}
-    <li {% if not pagination.has_next %}
+    <li
+    {% if not pagination.has_next %}
         class="disabled"><a href="#!">
     {% else %}
         class="waves-effect waves-teal"><a href="{{ url_for(request.endpoint, page=pagination.next_num) }}">

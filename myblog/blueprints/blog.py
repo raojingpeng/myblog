@@ -23,6 +23,11 @@ def index():
     return render_template('blog/index.html', pagination=pagination, categories=categories, posts=posts)
 
 
+@blog_bp.route('/about')
+def about():
+    return render_template('blog/about.html')
+
+
 @blog_bp.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def show_post(post_id):
     page = request.args.get('page', 1)

@@ -38,7 +38,7 @@
       <li class="logo">
         <img class="responsive-img circle hvr-grow" src="{{ url_for('static', filename='profile_photo.jpg') }}" alt="Profile Photo">
       </li>
-      <li class="blog_name">
+      <li class="blog_name center">
         <h3>{{ admin.blog_title|default('Blog Title')}}</h3>
       </li>
       {{ nav_link('blog.index', 'Home', 'home') }}
@@ -53,7 +53,7 @@
         </div>
       </li>
       {{ nav_link('blog.index', 'Post', 'description') }}
-      {{ nav_link('blog.index', 'About', 'face') }}
+      {{ nav_link('blog.about', 'About', 'face') }}
       {{ nav_link('blog.index', 'Project', 'web') }}
       {{ nav_link('blog.index', 'Message Board', 'comment') }}
     </ul>
@@ -73,37 +73,6 @@
   </main>
 
   {% block footer %}
-  <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">~~~~~~~~</h5>
-          <div class="badge">
-            <a href="http://flask.pocoo.org/">
-              <img src="{{ url_for('static', filename='flask-powered.png') }}" alt="Flask powered" title="Flask powered">
-            </a>
-          </div>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Links</h5>
-          <ul>
-            {% for link in links %}
-            <li><a class="grey-text text-lighten-3" href="{{ link.url }}">{{ link.name }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-        <div class="row">
-          <div class="col s12">
-            © 2019 Neko
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
   {% endblock footer %}
   {% block scripts %}
       <script src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
