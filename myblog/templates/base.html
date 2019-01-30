@@ -73,6 +73,16 @@
   </main>
 
   {% block footer %}
+  <footer class="mini-footer center-align hide-on-large-only">
+      <div class="container">
+          <div class="col s12">
+              <p>© 2019 Neko's Blog. Powered by
+                <a class="grey-text text-darken-1" href="http://flask.pocoo.org/">Flask</a>. Style based on
+                <a class="grey-text text-darken-1" href="http://materializecss.com/">Materialize</a>.
+              </p>
+          </div>
+      </div>
+  </footer>
   {% endblock footer %}
   {% block scripts %}
       <script src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
