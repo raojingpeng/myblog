@@ -1,10 +1,38 @@
-{% macro nav_link(endpoint, text, icon) -%}
+{% macro nav_link(endpoint, icon, text, categories=None) -%}
 <li {% if request.endpoint and request.endpoint==endpoint %}class="active" {% endif %}>
-    <a class="waves-effect waves-teal" href="{{ url_for(endpoint, **kwargs) }}">
-        <i class="material-icons">{{ icon }}</i>{{- text -}}
-    </a>
+    {% if not categories %}
+        <a class="waves-effect waves-teal" href="{{ url_for(endpoint, **kwargs) }}">
+            <i class="material-icons">{{ icon }}</i>{{- text -}}
+        </a>
+    {% else %}
+        <a class="waves-effect waves-teal collapsible-header">
+            <i class="material-icons">{{ icon }}</i>{{- text -}}
+        </a>
+        <div class="collapsible-body">
+            <ul>
+            {% for category in categories %}
+            <li><a href="{{ url_for(endpoint, category_name='Default', **kwargs) }}">{{ category.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+    {% endif %}
+
 </li>
 {%- endmacro %}
+
+ <li class="category">
+        <a class="waves-effect waves-teal collapsible-header">
+            <i class="material-icons">list</i>Category
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            {% for category in categories %}
+            <li><a href="autocomplete.html">{{ category.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+ </li>
+
 
 {% macro render_pagination(pagination, ellipses='…') %}
 <ul class="pagination">

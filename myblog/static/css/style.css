@@ -9,6 +9,12 @@ footer {
     font-weight: 300;
 }
 
+ul.sidenav.sidenav-fixed i {
+    margin: 0 25px 0 20px !important;
+}
+
+/*----*/
+
 main .container {
     margin: auto 0;
     max-width: 1280px;
@@ -26,15 +32,13 @@ ul.sidenav.sidenav-fixed:hover {
     overflow-y: auto;
 }
 
-ul.sidenav.sidenav-fixed h3 {
-    padding: 0 0 20px 0;
+ul.sidenav.sidenav-fixed h4 {
+    margin: 30px 0;
     color: #ee6e73;
     font-weight: 300;
 }
 
-ul.sidenav.sidenav-fixed i {
-    margin: 0 12px 0 0 !important;
-}
+
 
 .sidenav .collapsible-body li a {
     padding: 0 23.5px 0 83px;
@@ -54,8 +58,7 @@ ul.sidenav.sidenav-fixed i {
 }
 
 li.logo {
-    text-align: center;
-    padding-top: 22px;
+    padding-top: 48px;
 }
 
 nav.top-nav {

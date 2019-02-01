@@ -25,9 +25,7 @@
         <div class="nav-wrapper">
           <div class="row">
             <div class="col s12 m10 offset-m1">
-              <h3 class="header">
-                {%- if request.path=='/' %}Home{% else %}request.path{% endif -%}
-              </h3>
+              <h3 class="header"></h3>
             </div>
           </div>
         </div>
@@ -35,27 +33,18 @@
     </nav>
 
     <ul id="slide-out" class="sidenav sidenav-fixed collapsible">
-      <li class="logo">
+      <li class="logo center">
         <img class="responsive-img circle hvr-grow" src="{{ url_for('static', filename='profile_photo.jpg') }}" alt="Profile Photo">
       </li>
       <li class="blog_name center">
-        <h3>{{ admin.blog_title|default('Blog Title')}}</h3>
+        <h4>{{ admin.blog_title|default('Blog Title')}}</h4>
       </li>
-      {{ nav_link('blog.index', 'Home', 'home') }}
-      <li class="category">
-        <a class="waves-effect waves-teal collapsible-header"><i class="material-icons">list</i>Category</a>
-        <div class="collapsible-body">
-          <ul>
-            {% for category in categories %}
-            <li><a href="autocomplete.html">{{ category.name }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
-      </li>
-      {{ nav_link('blog.index', 'Post', 'description') }}
-      {{ nav_link('blog.about', 'About', 'face') }}
-      {{ nav_link('blog.index', 'Project', 'web') }}
-      {{ nav_link('blog.index', 'Message Board', 'comment') }}
+      {{ nav_link('blog.index', 'home', 'Home') }}
+      {{ nav_link('blog.show_category', 'list', 'Category', categories=categories) }}
+      {{ nav_link('blog.about', 'description', 'Post') }}
+      {{ nav_link('blog.about', 'face', 'About') }}
+      {{ nav_link('blog.about', 'web', 'Project') }}
+      {{ nav_link('blog.about', 'comment', 'Message Board') }}
     </ul>
 
     <div class="container">
@@ -73,7 +62,7 @@
   </main>
 
   {% block footer %}
-  <footer class="mini-footer center-align hide-on-large-only">
+  <footer id="footer" class="mini-footer center-align hide-on-large-only">
       <div class="container">
           <div class="col s12">
               <p>© 2019 Neko's Blog. Powered by
