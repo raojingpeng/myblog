@@ -52,7 +52,7 @@ def register_template_context(app):
     @app.context_processor
     def make_template_context():
         admin = Admin.query.first()
-        categories = Category.query.order_by(Category.name).all()
+        categories = Category.query.order_by(Category.id).all()
         links = Link.query.order_by(Link.name).all()
 
         return dict(admin=admin, categories=categories, links=links)

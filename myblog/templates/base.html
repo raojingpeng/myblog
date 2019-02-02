@@ -34,7 +34,8 @@
 
     <ul id="slide-out" class="sidenav sidenav-fixed collapsible">
       <li class="logo center">
-        <img class="responsive-img circle hvr-grow" src="{{ url_for('static', filename='profile_photo.jpg') }}" alt="Profile Photo">
+        <img class="responsive-img circle hvr-grow" src="{{ url_for('static', filename='profile_photo.jpg') }}"
+             alt="Profile Photo">
       </li>
       <li class="blog_name center">
         <h4>{{ admin.blog_title|default('Blog Title')}}</h4>

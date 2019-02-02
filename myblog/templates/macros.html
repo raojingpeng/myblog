@@ -11,28 +11,14 @@
         <div class="collapsible-body">
             <ul>
             {% for category in categories %}
-            <li><a href="{{ url_for(endpoint, category_name='Default', **kwargs) }}">{{ category.name }}</a></li>
+            <li {% if request.path.split('/')[-1]==category.name %}class="active"{% endif %}>
+                <a href="{{ url_for(endpoint, category_name=category.name, **kwargs) }}">{{ category.name }}</a></li>
             {% endfor %}
           </ul>
         </div>
     {% endif %}
-
 </li>
 {%- endmacro %}
-
- <li class="category">
-        <a class="waves-effect waves-teal collapsible-header">
-            <i class="material-icons">list</i>Category
-        </a>
-        <div class="collapsible-body">
-          <ul>
-            {% for category in categories %}
-            <li><a href="autocomplete.html">{{ category.name }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
- </li>
-
 
 {% macro render_pagination(pagination, ellipses='…') %}
 <ul class="pagination">
