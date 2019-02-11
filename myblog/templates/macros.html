@@ -1,31 +1,29 @@
-{% macro nav_link(endpoint, icon, text, categories=None) -%}
-    {% if not categories %}
-        <li class="normal {% if request.endpoint and request.endpoint==endpoint %}active{% endif %}">
+{% macro nav_link(endpoint, icon, text, folded_content=None) -%}
+    {% if not folded_content %}
+        <li {% if request.endpoint and request.endpoint==endpoint %}class="active"{% endif %}>
             <a class="waves-effect waves-teal" href="{{ url_for(endpoint, **kwargs) }}">
                 <i class="material-icons">{{ icon }}</i>{{- text -}}
             </a>
         </li>
     {% else %}
-        <li class="category">
-        <ul class="collapsible collapsible-accordion">
-            <li class="bold">
-            <a class="waves-effect waves-teal collapsible-header">
-                <i class="material-icons">{{ icon }}</i>{{- text -}}
-            </a>
-            <div class="collapsible-body">
-                <ul>
-                    {% for category in categories %}
-                        <li {% if request.path.split('/')[-1]==category.name %}class="active"{% endif %}>
-                            <a href="{{ url_for(endpoint, category_name=category.name, **kwargs) }}">
-                                {{ category.name }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            </li>
-        </ul>
-        </li>
+<li><ul class="collapsible">
+                <li {% if request.endpoint and request.endpoint==endpoint %}class="active"{% endif %}>
+                <a class="waves-effect waves-teal collapsible-header">
+                    <i class="material-icons">{{ icon }}</i>{{- text -}}
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        {% for content in folded_content %}
+                            <li {% if request.path.split('/')[-1]==content.name %}class="active"{% endif %}>
+                                <a href="{{ url_for(endpoint, category_name=content.name, **kwargs) }}">
+                                    {{ content.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                </li>
+    </ul></li>
     {% endif %}
 {%- endmacro %}
 

@@ -41,7 +41,7 @@
         <h4>{{ admin.blog_title|default('Blog Title')}}</h4>
       </li>
       {{ nav_link('blog.index', 'home', 'Home') }}
-      {{ nav_link('blog.show_category', 'list', 'Category', categories=categories) }}
+      {{ nav_link('blog.show_category', 'list', 'Category', folded_content=categories) }}
       {{ nav_link('blog.about', 'description', 'Post') }}
       {{ nav_link('blog.about', 'face', 'About') }}
       {{ nav_link('blog.about', 'web', 'Project') }}
